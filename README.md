@@ -1,8 +1,8 @@
 # Análise avançada multiagentes
 
-Repositório documental com os fluxos de trabalho, as skills e os relatórios da
-análise de vendas da papelaria. O conteúdo foi preparado para consulta pública
-no GitHub.
+Repositório com os fluxos de trabalho, as skills, os relatórios e o site estático
+da análise de vendas da papelaria. O site está configurado para publicação no
+Render por meio do arquivo `render.yaml`.
 
 ## O que está publicado
 
@@ -15,16 +15,33 @@ no GitHub.
 - `projeto-dashboard/ANALISE.md`, `resumo.md` e `verificacao.md`: análise e
   resultados documentados.
 - `projeto-dashboard/tests/PLANO.md`: plano documentado de testes.
+- `projeto-dashboard/site/`: arquivos estáticos necessários para servir o
+  dashboard, incluindo `data/dashboard.json`.
+- `render.yaml`: configuração do serviço estático no Render; pasta publicada
+  `projeto-dashboard/site/`, sem comando de build.
 
-O repositório publica somente documentação Markdown, além deste README e do
-`.gitignore`. Arquivos CSV, código, site, imagens, JSON, logs, capturas,
-dependências e ambientes virtuais foram deixados de fora. Portanto, este
-repositório é um arquivo de fluxos e relatórios; sozinho, não reproduz os
-cálculos nem executa o dashboard.
+O repositório não inclui CSVs-fonte, scripts de análise/preparação, dependências,
+logs ou capturas. Portanto, ele pode hospedar o dashboard usando os dados já
+preparados, mas não reproduz a análise nem refaz a preparação dos dados.
+
+## Publicar no Render
+
+No Render, crie um **Blueprint** apontando para este repositório e para a branch
+`main`; o Render detectará `render.yaml` e configurará um site estático. A
+publicação usa diretamente `projeto-dashboard/site/`, sem build. O push ao
+GitHub prepara o deploy, mas não cria nem publica o serviço no Render; essa
+etapa precisa ser confirmada na conta do Render.
+
+**Atenção:** o arquivo publicado `projeto-dashboard/site/data/dashboard.json`
+contém os 180 registros detalhados (IDs, data, cidade, produto, categoria,
+pagamento, quantidade e valores). Um site público torna esses dados acessíveis
+na internet. Confirme que há autorização para divulgar os registros antes de
+concluir a criação do serviço no Render.
 
 ## Navegação
 
 - [Resultado final](projeto-dashboard/relatorios/FINAL.md)
+- [Dashboard estático](projeto-dashboard/site/index.html)
 - [Fluxo de trabalho dos agentes](AGENTS.md)
 - [Skill: exploração de dados](.opencode/skills/explore-data/SKILL.md)
 - [Skill: visualização de dados](.opencode/skills/data-visualization/SKILL.md)

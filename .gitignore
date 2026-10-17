@@ -1,4 +1,4 @@
-# Este repositório publica documentação Markdown; todo o restante é privado/local.
+# Publica documentação e somente os arquivos necessários para o site estático.
 *
 !*/
 
@@ -11,6 +11,7 @@ node_modules/
 # Lista de publicação: fluxos, skills, análises e relatórios Markdown.
 !.gitignore
 !README.md
+!render.yaml
 !AGENTS.md
 !resumo.md
 !verificacao.md
@@ -18,3 +19,10 @@ node_modules/
 !projeto-dashboard/ANALISE.md
 !projeto-dashboard/tests/PLANO.md
 !projeto-dashboard/relatorios/**/*.md
+
+# Site estático publicado no Render: sem scripts de análise, testes ou CSVs.
+!projeto-dashboard/site/index.html
+!projeto-dashboard/site/styles.css
+!projeto-dashboard/site/app.js
+!projeto-dashboard/site/favicon.ico
+!projeto-dashboard/site/data/dashboard.json

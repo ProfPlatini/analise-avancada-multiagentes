@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dashboard interativo de vendas da papelaria, com filtros por cidade e categoria.">
+    <title>Vendas da papelaria | Dashboard</title>
+    <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">ANÁLISE DE VENDAS</p>
+          <h1>Vendas da papelaria</h1>
+          <p class="lede">Acompanhe o valor vendido, os produtos e as cidades no período analisado.</p>
+        </div>
+        <p class="period" id="period">Carregando período…</p>
+      </header>
+
+      <section class="filters panel" aria-labelledby="filters-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EXPLORAR DADOS</p>
+            <h2 id="filters-title">Filtros</h2>
+          </div>
+          <button id="clear-filters" class="button button-secondary" type="button">Limpar filtros</button>
+        </div>
+        <div class="filter-controls">
+          <div class="field">
+            <label for="city-filter">Cidade</label>
+            <select id="city-filter"><option value="">Todas as cidades</option></select>
+          </div>
+          <div class="field">
+            <label for="category-filter">Categoria</label>
+            <select id="category-filter"><option value="">Todas as categorias</option></select>
+          </div>
+        </div>
+        <p class="filter-help" id="result-count" aria-live="polite">Carregando vendas…</p>
+      </section>
+
+      <section class="kpi-grid" aria-label="Indicadores de vendas">
+        <article class="kpi-card panel">
+          <p class="kpi-label">Valor vendido</p>
+          <p class="kpi-value" id="revenue-kpi">—</p>
+          <p class="kpi-note">Soma dos valores das vendas exibidas</p>
+        </article>
+        <article class="kpi-card panel">
+          <p class="kpi-label">Quantidade de vendas</p>
+          <p class="kpi-value" id="sales-kpi">—</p>
+          <p class="kpi-note">Uma linha corresponde a uma venda</p>
+        </article>
+        <article class="kpi-card panel">
+          <p class="kpi-label">Ticket médio</p>
+          <p class="kpi-value" id="average-kpi">—</p>
+          <p class="kpi-note">Valor vendido ÷ quantidade de vendas</p>
+        </article>
+      </section>
+
+      <section class="charts-grid" aria-label="Gráficos de vendas">
+        <article class="panel chart-card">
+          <div class="section-heading chart-heading">
+            <div><p class="eyebrow">VALOR VENDIDO</p><h2>Por categoria</h2></div>
+          </div>
+          <div class="chart" id="category-chart"></div>
+        </article>
+        <article class="panel chart-card">
+          <div class="section-heading chart-heading">
+            <div><p class="eyebrow">VALOR VENDIDO</p><h2>Por cidade</h2></div>
+          </div>
+          <div class="chart" id="city-chart"></div>
+        </article>
+      </section>
+
+      <section class="panel table-panel" aria-labelledby="table-title">
+        <div class="section-heading table-heading">
+          <div><p class="eyebrow">DETALHAMENTO</p><h2 id="table-title">Vendas</h2></div>
+          <p class="table-caption">Valores em reais (R$)</p>
+        </div>
+        <p class="empty-state" id="empty-state" hidden>Nenhuma venda corresponde aos filtros selecionados. Ajuste ou limpe os filtros.</p>
+        <div class="table-wrap" id="table-wrap">
+          <table>
+            <caption class="visually-hidden">Vendas da papelaria filtradas por cidade e categoria</caption>
+            <thead><tr><th scope="col">Data</th><th scope="col">ID da venda</th><th scope="col">Cidade</th><th scope="col">Categoria</th><th scope="col">Produto</th><th scope="col">Unidades</th><th scope="col">Preço unitário</th><th scope="col">Forma de pagamento</th><th scope="col">Valor vendido</th></tr></thead>
+            <tbody id="sales-rows"></tbody>
+          </table>
+        </div>
+      </section>
+      <p class="footnote">Fonte: papelaria_limpa.csv. Barras em reais (R$), com início em zero e a mesma escala nos dois gráficos. Valor vendido é receita bruta registrada, não lucro. A base não contém custos ou despesas.</p>
+      <p class="load-error" id="load-error" role="alert" hidden>Não foi possível carregar os dados. Confira se o site está sendo aberto por um servidor HTTP local e se o arquivo data/dashboard.json existe.</p>
+    </main>
+  </body>
+</html>

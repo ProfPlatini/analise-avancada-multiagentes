@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: analise-avancada-multiagentes
+    runtime: static
+    buildCommand: "echo 'No build required'"
+    staticPublishPath: ./projeto-dashboard/site
